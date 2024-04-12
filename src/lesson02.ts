@@ -1,10 +1,10 @@
-const main = () => {
+const main2 = () => {
   /***** START 配列の型定義 *****/
   // T[]
   const members: string[] = ["Ryoma", "Yuta"]
   members.push("Shunsuke")
-  // members.push(123)
-  console.log(members)
+  // members.push(123) 数字は入れられない
+  // console.log(members)
 
   // Array<T>
   const friends: Array<string> = ["Taro", "Jiro"]
@@ -13,9 +13,9 @@ const main = () => {
   const answers: ("Yes" | "No")[] = ["Yes", "No", "Yes"]
   answers.push("Yes")
   // answers.push("Neither")
-  console.log(answers)
+  // console.log(answers)
 
-  // アノテーションしなくても型推論される
+  // アノテーションしなくても型推論される アノテーション（どんな値が代入可能かを指定できます）
   const fruits = ["Apple"]
   fruits.push("Orange")
   // fruits.push(undefined)
@@ -33,12 +33,14 @@ const main = () => {
 
   // 可変長引数（レストパラメーター）も使える
   let cacheControl: [boolean, ...string[]]
+  // let cacheControl: [boolean, string, string]
   cacheControl = [false, "max-age=0"]
   cacheControl = [true, "max-age=86400", "must-revalidate"]
   /***** END タプル = より厳格な配列 *****/
 
   /***** START オブジェクトの型定義 *****/
   // object型は object であることを伝えるだけなので any と大差ない 🙅
+  // この表記は普段しない
   const obj: object = {
     companyName: "toraco株式会社",
     email: "corp@toraco.jp",
@@ -46,6 +48,7 @@ const main = () => {
   // console.log(obj.email)
 
   // オブジェクトリテラル表記で key と value を明確に定義しよう 👏
+  // 実践で使うことが多い
   const company: {
     companyName: string
     email: string
@@ -56,6 +59,7 @@ const main = () => {
   console.log(company.email)
 
   // ? のついたプロパティはオプショナル（あってもなくてもOK）
+  // バリデーションに活用できる？
   const user: {
     email?: string
     firstName: string
@@ -101,6 +105,8 @@ const main = () => {
 
   /***** START 型エイリアスで型定義を使いまわそう *****/
   // 型エイリアス ( type alias ) で型に名前をつけて宣言できる
+  // 大文字で始める！
+  // めちゃくちゃ便利やん！
   type Country = {
     capital: string
     language: string
@@ -119,15 +125,18 @@ const main = () => {
   }
   // 型に名前をつけることで変数の役割を明確にできる ✨
   // const Gunma: Country = {}
+  // const Gunma: Prefectureじゃないの？
   /***** END 型エイリアスで型定義を使いまわそう *****/
 
   /***** START 合併型 ( union ) と交差型 ( intersection )  *****/
   // 合併型 : 型Aか型Bどちらかの型を持つ
+  // 近接先頭
   type Worrier = {
     attack: number
     hp: number
     mp: number
   }
+  // マジック
   type Magician = {
     magic_attack: number
     hp: number
@@ -163,6 +172,7 @@ const main = () => {
     quantity: number
   }
   type Cart = CartItem[]
+  // [{ name: "aaa", price: 100, }]
   const cart: Cart = [
     {
       name: "キャンディ",
@@ -244,6 +254,7 @@ const main = () => {
   /***** END オプションパラメーターとデフォルトパラメーター  *****/
 
   /***** START レストパラメーター *****/
+  // 引数のnumber[]に注意number型で展開するっていうこと
   const sumAllPrice = (...prices: number[]): number => {
     return prices.reduce((prev, price) => prev + price, 0)
   }
@@ -297,4 +308,4 @@ const main = () => {
   /***** END 呼び出しシグネチャ  *****/
 }
 
-main()
+main2()

@@ -1,4 +1,4 @@
-const main = async () => {
+const main3 = async () => {
   /***** START Promise 型で実行完了後の値を定義しよう   *****/
   // JSONPlaceholder ( https://jsonplaceholder.typicode.com/ ) で返却される User の型を定義する
   type Address = {
@@ -128,4 +128,4 @@ const main = async () => {
   /***** END 例外 ( Error ) を返してみよう *****/
 }
 
-main()
+main3()
