@@ -41,9 +41,12 @@ const main3 = async () => {
       })
   }
   await fetchUser(1)
+  
 
   // async/await を用いた例
+  // Promiseは→返ってくる型
   const fetchUsers = async (): Promise<User[]> => {
+    // シンプルにかける！
     const res = await fetch(url)
     const users = await res.json()
     console.log(users)
@@ -81,10 +84,12 @@ const main3 = async () => {
 
   // throw された例外は try/catch で処理しよう
   try {
-    const ret = selectRouletteWithThrowingError(2)
-    console.log(ret)
+    // 問題なく進めばこっちが処理される
+    const ret = selectRouletteWithThrowingError(500)
+    console.log("rouletteResult"+ ret)
   } catch (e) {
     // instanceof 演算子を用いることでエラーの型を判定できる
+    // catchしたらエラーがどんなエラーかを確認する
     if (e instanceof RangeError) {
       console.error(e.message)
     }
@@ -116,7 +121,7 @@ const main3 = async () => {
   }
 
   // 関数の実行結果を受け取った先で Error でないかチェックが必要 🪖
-  const ret = selectRouletteReturnError(500)
+  const ret = selectRouletteReturnError(5)
   // ret は boolean | RangeError なので、RangeErrorではないことを検証しないと getResultMessage の引数として渡せない
   // getResultMessage(ret)
 

@@ -199,6 +199,7 @@ const main2 = () => {
   // forEach() はループ処理内で
   cart.forEach((cartItem: CartItem) => {
     console.log(cartItem.name)
+    console.log("----------------------");
   })
   // map() はループ処理でreturnした要素の配列を返す
   const snackNames = cart.map(cartItem => {
