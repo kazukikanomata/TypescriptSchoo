@@ -12,6 +12,7 @@ interface Book {
 type Cycle = 'daily' | 'weekly' | 'monthly' | 'yearly'
 
 // extends を使うことで "拡張” できる 👪
+// 型も引き継ぎ
 interface Magazine extends Book {
   cycle: Cycle
   open: (page: number) => void
