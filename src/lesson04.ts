@@ -16,6 +16,9 @@ const main4 = () => {
   }
 
   // ジェネリック型パラメーターを使おう
+  // type GetUserId = (user: User) => number
+  // type GetUserName = (user: User) => string
+  // これが共通化したもの！
   type GetUserProperty<T> = (user: User) => T
   // GetUserProperty を使う
   const getUserIdWithGeneric: GetUserProperty<number> = (user) => {
@@ -36,6 +39,7 @@ const main4 = () => {
   type Omusoba = Omelette & Yakisoba
   type MergeObject<T, U, V> = (objT: T, objU: U) => V
   const mergeObject: MergeObject<Omelette, Yakisoba, Omusoba> = (omelette, yakisoba) => {
+    // スプレッド構文苦手かもしれない！
     return { ...omelette, ...yakisoba}
   }
   const omelette: Omelette = { egg: 3 }
@@ -45,9 +49,10 @@ const main4 = () => {
   /***** END 型を抽象化する "ジェネリック"  *****/
 
   /***** START ジェネリックの宣言方法とバインド *****/
-  // ジェネリックの宣言方法1（完全な記法・スコープは個々のシグネチャ）
+  // ジェネリックの宣言方法1（関数の書き方は完全な記法・スコープは個々のシグネチャ）
   type FindItem1 = {
     <T>(arr: T[], predicate: (item: T) => boolean): T | undefined;
+    <U>(arr: U[], predicate: (item: U) => boolean): U | undefined;
     // (arr: T[], predicate: (item: T) => boolean): T | undefined;
   }
   // ジェネリックの宣言方法2（完全な記法・スコープはシグネチャ全体）
